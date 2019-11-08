@@ -19,9 +19,9 @@ app.use('/users',controllerUsuario);
     next();
 }); */
 
-app.use('/pregunta',auth.isAuth,controllerPregunta);
-app.use('/positivos',auth.isAuth,controllerPositivo);
-app.use('/negativos',auth.isAuth,controllerNegativo);
+app.use('/pregunta',controllerPregunta);
+app.use('/positivos',controllerPositivo);
+app.use('/negativos',controllerNegativo);
 
 app.use(errorHandler.logError);
 app.use(errorHandler.clientErrorHandler);

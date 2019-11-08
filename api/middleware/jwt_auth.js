@@ -41,6 +41,8 @@ export default {
   },
 
   isAuth(req, res, next) {
+/*     console.log(req.headers.authorization);
+    next(); */
     if (!req.headers["authorization"]) {
       return res.status(403).send({ message: "No tienes autorización" });
     } else {
@@ -55,5 +57,5 @@ export default {
           res.status(response.status);
         });
     }
-  }
+  } 
 };

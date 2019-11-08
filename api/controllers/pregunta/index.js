@@ -5,9 +5,11 @@ import updateOne from './updateOne.js';
 import removeOne from './removeOne.js';
 import list from './list.js';
 import remove from './remove.js';
+import auth from "../../middleware/jwt_auth.js";
 
 const router = Router();
 
+router.all('*',auth.isAuth);
 router.route('/')
     .post(create);
 
