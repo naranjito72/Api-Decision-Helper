@@ -1,0 +1,41 @@
+import Negativo from "./model.mjs";
+import mongo from "../../mongo/MongoManager.mjs";
+
+class negativoDAO {
+  constructor() {
+    mongo.connect();
+  }
+
+  create(data) {
+    const negativo = new Negativo();
+    Object.assign(negativo, data);
+
+    return negativo.save();
+  }
+
+  list(id) {
+    return Negativo.find({question:id}).exec();
+  }
+
+  remove(id) {
+    return Negativo.deleteMany({question:id}).exec();
+  }
+
+  listOne(id) {
+    return Negativo.findById(id).exec();
+  }
+
+  updateOne(id, data) {
+    return Negativo.findByIdAndUpdate(id, 
+      { $set: { desc: data.desc, point: data.point }}, {
+      new: false,
+      useFindAndModify: false
+    }).exec();
+  }
+
+  removeOne(id) {
+    return Negativo.findByIdAndRemove(id, { useFindAndModify: false }).exec();
+  }
+}
+
+export default new negativoDAO();
