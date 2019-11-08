@@ -2,10 +2,11 @@
   "name": "student-API",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "server",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon -r dotenv/config --experimental-modules server.mjs"
+    "start-dev": "node -r dotenv/config -r esm api/server.js",
+    "start": "node -r esm api/server.js"
   },
   "keywords": [],
   "author": "",
@@ -13,6 +14,7 @@
   "dependencies": {
     "bcrypt": "^3.0.6",
     "dotenv": "^8.2.0",
+    "esm": "^3.2.25",
     "express": "^4.17.1",
     "http-errors": "^1.7.3",
     "jwt-simple": "^0.5.6",
