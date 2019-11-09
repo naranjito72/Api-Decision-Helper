@@ -5,9 +5,9 @@ const Schema = mongoose.Schema;
 
 const usuarioSchema = new Schema({
   //_id: Schema.ObjectId,
-  email: { type: String, required: true },
-  password: { type: String, required: true },
-  name: String
+  email: { type: String, required: true, trim: true, unique: true, lowercase:true },
+  password: { type: String, required: true, select: false },
+  name: { type: String, unique: true, trim: true}
 });
 
 usuarioSchema.pre("save", async function() {
