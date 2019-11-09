@@ -3,16 +3,17 @@ import HTTPStatuses from "statuses";
 
 export default {
   logError(err, req, res, next) {
-    req.error = err;
-    console.log(err.message);
+/*     req.error = err;
+    console.log(err.message); */
     next(err);
   },
 
   clientErrorHandler(err, req, res, next) {
-    if (err instanceof HTTPErrors.HttpError)
+    if (err instanceof HTTPErrors.HttpError) {
       res
         .status(err.statusCode)
         .send(err.message || HTTPStatuses[err.statusCode]);
+    }
 
     next(err);
   },
@@ -22,6 +23,6 @@ export default {
       return next(err);
     }
 
-    res.status(500).send("se ha producido un error: ", error.type);
+    res.status(500).send({message:"se ha producido un error: "}, error.type);
   }
 };

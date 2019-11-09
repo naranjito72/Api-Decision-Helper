@@ -5,7 +5,7 @@ import HTTPerror from "http-errors";
 const create = async (req, res, next) => {
   try {
     if (!req.body.question || !req.body.user) {
-      next(HTTPerror(400, { message: "question or user not found" }));
+      next(HTTPerror(400, { message: "question or user no encontrado en body" }));
     } else {
       const pregunta = await preguntaDAO.create(
         Object.assign({}, req.body)
@@ -14,7 +14,7 @@ const create = async (req, res, next) => {
       res.send(pregunta);
     }
   } catch (error) {
-    next(error);
+    next(HTTPerror(500));
   }
 };
 

@@ -5,10 +5,9 @@ import bcrypt from "bcrypt";
 import moment from "moment";
 
 const login = async (req, res, next) => {
-  console.log(req.body);
   try {
     if (!req.body.email || !req.body.password) {
-      next(HTTPerror(404, { message: "No existe el usuario o password" }));
+      next(HTTPerror(400, { message: "No existe el usuario o password" }));
     } else {
       const usuario = await usuarioDAO.checkUser({"email": req.body.email});
       if(usuario != null) {
@@ -25,7 +24,7 @@ const login = async (req, res, next) => {
       } else next(HTTPerror(404, { message: "No existe el usuario" }));
     }
   } catch (error) {
-    next(HTTPerror(404));
+    next(HTTPerror(500));
   }
 };
 
